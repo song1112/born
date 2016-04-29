@@ -10,6 +10,14 @@
 </head>
 <body>
 
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
 <div id="wrap">
 
 <div id="header">
@@ -26,7 +34,7 @@
         <tr>
           <th width="139" scope="row">會員帳號</th>
           <th width="561" scope="row"><label for="act"></label>
-            <input type="text" name="act" id="act" /></th>
+            <input type="text" name="account" id="account" /></th>
           </tr>
         <tr>
           <th scope="row">會員信箱</th>
@@ -36,18 +44,13 @@
         <tr>
           <th scope="row">會員密碼</th>
           <th scope="row"><label for="psw"></label>
-            <input type="password" name="psw" id="psw" /></th>
+            <input type="password" name="passwd" id="passwd" /></th>
           </tr>
         <tr>
-          <th scope="row">確認密碼</th>
-          <th scope="row"><label for="psw2"></label>
-            <input type="password" name="psw2" id="psw2" /></th>
           </tr>
       </table>
     </div>
-  </form>
   <h2>	<img src="../tree.jpg" alt="tree" width="25" height="25" align="bottom" />個人資料</h2>
-  <form id="form2" method="post" action=""> 
     <div align="right"></div>
     <div align="right">
       <table width="710" border="0">
@@ -71,10 +74,10 @@
             <label for="12"></label>
             <p>
               <label>
-                <input type="radio" name="sex" value="1" id="sex_0" />
+                <input type="radio" name="sex" value="1" id="sex" />
                 男</label>
               <label>
-                <input type="radio" name="sex" value="0" id="sex_1" />
+                <input type="radio" name="sex" value="0" id="sex" />
                 女</label>
               <br />
               </p>
@@ -89,17 +92,11 @@
             </div></td>
           </tr>
         <tr>
-          <th scope="row">手機</th>
-          <td><div align="center">
-            <label>
-              <input type="text" name="phone" id="phone" />
-              </label>
-            </div></td>
-          </tr>
         <tr>
           <th colspan="2" scope="row"><p>
             <input type="submit" name="button" id="button" value="送出" />
-            <input type="submit" value="直接登入" />
+            <input type="hidden" value="直接登入" />
+            <a href="{% url 'born_user.views.login' %}">直接登入</a>
           </p></th>
           </tr>
       </table>

@@ -16,9 +16,18 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from born_user.views import login
+from born_user.views import login, register, new_project
+from born.views import index
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    url(r'home', index),
+    url(r'^$', index),
     url(r'^admin/', admin.site.urls),
     url(r'^login/', login),
-]
+    url(r'register/', register),
+    url(r'new_project/', new_project),
+]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
